@@ -3,7 +3,7 @@ const member = {
 <div>
 
 <button type="button"
-class="btn btn-primary m-2 fload-end"
+class="btn btn-secondary m-2 fload-end"
 data-bs-toggle="modal"
 data-bs-target="#exampleModal"
 @click="addClick()">
@@ -85,10 +85,17 @@ data-bs-target="#exampleModal"
     <div class="d-flex flex-row bd-highlight mb-3">
         <div class="p-2 w-50 bd-highlight">
             <div class="input-group mb-3">
-                <span class="input-group-text">Name</span>
+                <span class="input-group-text">Full Name</span>
                 <input type="text" class="form-control" v-model="MemberFullName">
             </div>
-
+            <div class="input-group mb-3">
+                <span class="input-group-text">Cell Number</span>
+                <input type="text" class="form-control" v-model="CellNumber">
+            </div>
+             <div class="input-group mb-3">
+                <span class="input-group-text">Residential Address</span>
+                <input type="text" class="form-control" v-model="ResidentialAddress">
+            </div>
             <div class="input-group mb-3">
                 <span class="input-group-text">Department</span>
                 <select class="form-select" v-model="Department">
@@ -110,11 +117,11 @@ data-bs-target="#exampleModal"
         </div>
     </div>
         <button type="button" @click="createClick()"
-        v-if="MemberId==0" class="btn btn-primary">
+        v-if="MemberId==0" class="btn btn-secondary">
         Create
         </button>
         <button type="button" @click="updateClick()"
-        v-if="MemberId!=0" class="btn btn-primary">
+        v-if="MemberId!=0" class="btn btn-secondary">
         Update
         </button>
 
