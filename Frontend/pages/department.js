@@ -3,7 +3,7 @@ const department = {
 <div>
 
 <button type="button"
-class="btn btn-primary m-2 fload-end"
+class="btn btn-secondary m-2 fload-end"
 data-bs-toggle="modal"
 data-bs-target="#exampleModal"
 @click="addClick()">
@@ -36,7 +36,7 @@ data-bs-target="#exampleModal"
                 </svg>
                 </button>
             </div>
-            DepartmentId
+            Department ID
         </th>
         <th>
 
@@ -62,7 +62,7 @@ data-bs-target="#exampleModal"
                 </button>
 
             </div>
-            DepartmentName
+            Department Name
         </th>
         <th>
             Options
@@ -115,11 +115,11 @@ data-bs-target="#exampleModal"
         </div>
 
         <button type="button" @click="createClick()"
-        v-if="DepartmentId==0" class="btn btn-primary">
+        v-if="DepartmentId==0" class="btn btn-secondary">
         Create
         </button>
         <button type="button" @click="updateClick()"
-        v-if="DepartmentId!=0" class="btn btn-primary">
+        v-if="DepartmentId!=0" class="btn btn-secondary">
         Update
         </button>
 
