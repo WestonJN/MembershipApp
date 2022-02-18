@@ -26,7 +26,7 @@ namespace MembershipApp.Controllers
         public JsonResult Get()
         {
             string query = @"
-                            select ComplianceId, MemberFullName, Date, Temperature, Fever, Cough, Chills, Taste, Other, Contact from
+                            select ComplianceId, MemberFullName, convert(varchar(10),Date,120) as Date, Temperature, Fever, Cough, Chills, Taste, Other, Contact from
                             dbo.Compliance
                             ";
 
@@ -53,7 +53,7 @@ namespace MembershipApp.Controllers
         public JsonResult Get(int id)
         {
             string query = @"
-                            select ComplianceId, MemberFullName, Date, Temperature, Fever, Cough, Chills, Taste, Other, Contact from
+                            select ComplianceId, MemberFullName, convert(varchar(10),Date,120) as Date, Temperature, Fever, Cough, Chills, Taste, Other, Contact from
                             dbo.Compliance where ComplianceId = @ComplianceId
                             ";
 
