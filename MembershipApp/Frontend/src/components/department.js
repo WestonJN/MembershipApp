@@ -94,7 +94,6 @@ data-bs-target="#exampleModal"
         </td>
     </tr>
 </tbody>
-</thead>
 </table>
 
 <div class="modal fade" id="exampleModal" tabindex="-1"
