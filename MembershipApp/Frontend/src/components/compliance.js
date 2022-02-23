@@ -47,15 +47,15 @@ const compliance = {
             </tr>
         </thead>
         <tbody>
-            <tr v-for="mem in members">
-                <td>{{mem.MemberFullName}}</td>
-                <td>{{mem.ResidentialAddress}}</td>
-                <td>{{mem.CellNumber}}</td>
+            <tr v-for="com in compliance">
+                <td>{{com.MemberFullName}}</td>
+                <td>{{com.ResidentialAddress}}</td>
+                <td>{{com.CellNumber}}</td>
                 <td>
                    <button type="button" class="btn btn-light"
                             data-bs-toggle="modal"
                             data-bs-target="#exampleModal"
-                            @click="editClick(mem)">
+                            @click="editClick(com)">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                         <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                         <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
@@ -96,7 +96,7 @@ const compliance = {
                         </div>
                          <div class="input-group mb-3">
                             <span class="input-group-text">Date</span>
-                            <input type="date" class="form-control" v-model="Date">
+                            <input type="date" class="form-control" v-model="CurrentDate">
                         </div>
                          <div class="input-group mb-3">
                             <span class="input-group-text">Fever</span>
@@ -129,11 +129,11 @@ const compliance = {
 
                     </div>
                 </div>
-                    <button type="button" 
+                    <button type="button" @click="createClick()"
                     v-if="MemberId==0" class="btn btn-secondary">
                     Create
                     </button>
-                    <button type="button"
+                    <button type="button" @click="updateClick()"
                     v-if="MemberId!=0" class="btn btn-secondary">
                     Update
                     </button>
@@ -213,7 +213,7 @@ const compliance = {
             MemberFullNameFilter: '',
             membersWithoutFilter: [],
             Temperature: '',
-            Date: '',
+            CurrentDate: '',
             Fever: '',
             Chills: '',
             Breath: '',
@@ -252,18 +252,18 @@ const compliance = {
             (this.CellNumber = ''),
             (this.ResidentialAddress = '');
         },
-        editClick(mem) {
+        editClick(com) {
             this.modalTitle = 'Covid Compliance';
-            this.MemberFullName = mem.MemberFullName;
-            (this.Temperature = mem.Temperature),
-            (this.Date = mem.Date),
-            (this.Fever = mem.Fever),
-            (this.Chills = mem.Chills),
-            (this.Breath = mem.Breath),
-            (this.Cough = mem.Cough),
-            (this.Taste = mem.Taste),
-            (this.Contact = mem.Contact),
-            (this.Other = mem.Other);
+            this.MemberFullName = com.MemberFullName;
+            (this.Temperature = com.Temperature),
+            (this.CurrentDate = com.CurrentDate),
+            (this.Fever = com.Fever),
+            (this.Chills = com.Chills),
+            (this.Breath = com.Breath),
+            (this.Cough = com.Cough),
+            (this.Taste = com.Taste),
+            (this.Contact = com.Contact),
+            (this.Other = com.Other);
         },
         createClick() {
             axios
@@ -283,11 +283,11 @@ const compliance = {
         updateClick() {
             axios
                 .put(variables.API_URL + 'compliance', {
-                    // ComplianceId: this.ComplianceId,
-                    MemberId: this.MemberId,
+                    ComplianceId: this.ComplianceId,
+                    // MemberId: this.MemberId,
                     MemberFullName: this.MemberFullName,
                     Temperature: this.Temperature,
-                    Date: this.Date,
+                    CurrentDate: this.CurrentDate,
                     Fever: this.Fever,
                     Chills: this.Chills,
                     Breath: this.Breath,

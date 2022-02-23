@@ -13,7 +13,7 @@ namespace MembershipApp.Models
 
         public string Temperature { get; set; }
 
-        public string Date { get; set; }
+        public string CurrentDate { get; set; }
 
         public string Fever { get; set; }
 

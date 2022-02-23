@@ -26,8 +26,8 @@ namespace MembershipApp.Controllers
         public JsonResult Get()
         {
             string query = @"
-                            select ComplianceId, MemberFullName, convert(varchar(10),Date,120) as Date, Temperature, Fever, Cough, Chills, Taste, Other, Contact from
-                            dbo.Compliance
+                            select ComplianceId, dbo.Compliance.MemberFullName, dbo.Member.MemberFullName,dbo.Member.MemberId,convert(varchar(10),CurrentDate,120) as CurrentDate, Temperature, Fever, Cough, Chills, Taste, Other, Contact from
+                            dbo.Compliance inner join dbo.Member on Compliance.MemberFullName=Member.MemberFullName
                             ";
 
             DataTable table = new DataTable();
@@ -53,7 +53,7 @@ namespace MembershipApp.Controllers
         public JsonResult Get(int id)
         {
             string query = @"
-                            select ComplianceId, MemberFullName, convert(varchar(10),Date,120) as Date, Temperature, Fever, Cough, Chills, Taste, Other, Contact from
+                            select ComplianceId, MemberFullName, convert(varchar(10),CurrentDate,120) as CurrentDate, Temperature, Fever, Cough, Chills, Taste, Other, Contact from
                             dbo.Compliance where ComplianceId = @ComplianceId
                             ";
 
@@ -82,8 +82,8 @@ namespace MembershipApp.Controllers
         {
             string query = @"
                             insert into dbo.Compliance
-                            (MemberFullName,Temperature,Date,Fever,Chills,Cough,Taste,Contact,Other)
-                            values (@MemberFullName,@Temperature,@Date,@Fever,@Chills,@Cough,@Taste,@Contact,@Other)
+                            (MemberFullName,Temperature,CurrentDate,Fever,Chills,Cough,Taste,Contact,Other)
+                            values (@MemberFullName,@Temperature,@CurrentDate,@Fever,@Chills,@Cough,@Taste,@Contact,@Other)
                             ";
 
             DataTable table = new DataTable();
@@ -96,7 +96,7 @@ namespace MembershipApp.Controllers
                 {
                     myCommand.Parameters.AddWithValue("@MemberFullName", comp.MemberFullName);
                     myCommand.Parameters.AddWithValue("@Temperature", comp.Temperature);
-                    myCommand.Parameters.AddWithValue("@Date", comp.Date);
+                    myCommand.Parameters.AddWithValue("@CurrentDate", comp.CurrentDate);
                     myCommand.Parameters.AddWithValue("@Fever", comp.Fever);
                     myCommand.Parameters.AddWithValue("@Chills", comp.Chills);
                     myCommand.Parameters.AddWithValue("@Cough", comp.Cough);
@@ -120,7 +120,7 @@ namespace MembershipApp.Controllers
                             update dbo.Compliance
                             set MemberFullName = @MemberFullName,
                                 Temperature = @Temperature,
-                                Date = @Date,
+                                CurrentDate = @CurrentDate,
                                 Fever = @Fever,
                                 Chills = @Chills,
                                 Breath = @Breath,
@@ -142,7 +142,7 @@ namespace MembershipApp.Controllers
                     myCommand.Parameters.AddWithValue("@ComplianceId", comp.ComplianceId);
                     myCommand.Parameters.AddWithValue("@MemberFullName", comp.MemberFullName);
                     myCommand.Parameters.AddWithValue("@Temperature", comp.Temperature);
-                    myCommand.Parameters.AddWithValue("@Date", comp.Date);
+                    myCommand.Parameters.AddWithValue("@CurrentDate", comp.CurrentDate);
                     myCommand.Parameters.AddWithValue("@Fever", comp.Fever);
                     myCommand.Parameters.AddWithValue("@Chills", comp.Chills);
                     myCommand.Parameters.AddWithValue("@Breath", comp.Breath);
